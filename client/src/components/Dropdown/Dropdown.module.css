@@ -1,0 +1,12 @@
+.dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  color: black;
+}
