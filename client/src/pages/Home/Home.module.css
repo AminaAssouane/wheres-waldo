@@ -1,4 +1,4 @@
 .main {
-  background-color: aqua;
-  height: 100vh;
+  background-color: var(--color-primary);
+  height: auto;
 }

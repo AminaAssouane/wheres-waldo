@@ -1,4 +1,4 @@
 import styles from "./Home.module.css";
 export function Home() {
-  return <main className={styles.main}>Test</main>;
+  return <section className={styles.main}>Test</section>;
 }

@@ -1,0 +1,27 @@
+.footer {
+  background-color: var(--color-header);
+  border-radius: 16px 16px 0px 0px;
+  color: var(--color-primary);
+  font-family: "waldo";
+  padding: 10px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.github {
+  height: 30px;
+  cursor: pointer;
+}
+
+.linkedin {
+  height: 35px;
+  cursor: pointer;
+}
