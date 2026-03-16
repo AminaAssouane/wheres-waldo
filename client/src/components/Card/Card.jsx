@@ -4,7 +4,9 @@ export function Card({ imageUrl, title }) {
     <article className={styles.card}>
       <img src={imageUrl} alt="" />
       <div className={styles.title}>{title}</div>
-      <button className={styles.startBtn}>Start Game</button>
+      <a href="/game">
+        <button className={styles.startBtn}>Start Game</button>
+      </a>
     </article>
   );
 }

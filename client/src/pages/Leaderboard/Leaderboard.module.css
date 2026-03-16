@@ -7,4 +7,58 @@
 
 .title {
   font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Container to handle the rounded corners and background */
+.tableContainer {
+  background-color: var(--color-background); /* Light grayish-blue background */
+  overflow: hidden; /* Important to keep corners rounded */
+  margin: 20px auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: 1px solid var(--color-primary);
+  transition: 0.2s ease;
+  width: 700px;
+}
+
+.tableContainer:hover {
+  border: 1px solid var(--color-background-second);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Removes gaps between cells */
+  text-align: left;
+  color: white;
+}
+
+/* Header Styling */
+thead {
+  background-color: var(--color-header);
+}
+
+th {
+  padding: 20px;
+  font-weight: 500;
+}
+
+/* Body Styling */
+td {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle lines */
+}
+
+/* Remove border from the last row */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eda5a6;
+}
+
+/* Hover effect for a nice touch */
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }

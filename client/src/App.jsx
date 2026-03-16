@@ -18,3 +18,21 @@ function App() {
 }
 
 export default App;
+
+{
+  /* characters
+---------
+id
+name
+x_min
+x_max
+y_min
+y_max
+
+scores
+------
+id
+username
+time
+created_at*/
+}
