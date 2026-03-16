@@ -3,6 +3,16 @@
   src: url("./assets/fonts/BlueWinter.ttf");
 }
 
+@font-face {
+  font-family: "SFT";
+  src: url("./assets/fonts/SFT.ttf");
+}
+
+@font-face {
+  font-family: "Melon";
+  src: url("./assets/fonts/Melon.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
