@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Waldo";
+  src: url("./assets/fonts/BlueWinter.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --color-header: #ea2b2e;
+  --color-primary: #e6e7e6;
+}
