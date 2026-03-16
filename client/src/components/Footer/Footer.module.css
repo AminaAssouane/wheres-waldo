@@ -1,8 +1,8 @@
 .footer {
   background-color: var(--color-header);
   border-radius: 16px 16px 0px 0px;
-  color: var(--color-primary);
-  font-family: "waldo";
+  color: white;
+  font-family: "Arial";
   padding: 10px 0px;
 
   display: flex;
