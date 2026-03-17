@@ -5,6 +5,9 @@ const scoresRouter = require("./routes/scoresRouter");
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use("/characters", charactersRouter);
 app.use("/leaderboard", scoresRouter);
 
