@@ -1,16 +1,15 @@
 const db = require("../lib/queries");
 
-async function getCharacter(req, res) {
+async function getCharacters(req, res) {
   try {
-    const { name } = req.params;
-    const character = await db.getCharacter(name);
-    if (!character) {
-      return res.status(404).json({ error: "Character not found" });
+    const characters = await db.getCharacters();
+    if (!characters) {
+      return res.status(404).json({ error: "Failed to fetch characters" });
     }
-    res.json(character);
+    res.json(characters);
   } catch (error) {
-    console.error("Failed to fetch character's position. ", error);
-    res.status(500).json({ error: "Failed to fetch character's postition." });
+    console.error("Failed to fetch characters. ", error);
+    res.status(500).json({ error: "Failed to fetch characters." });
   }
 }
 
@@ -28,4 +27,4 @@ async function checkCharacter(req, res) {
   }
 }
 
-module.exports = { getCharacter, checkCharacter };
+module.exports = { getCharacters, checkCharacter };

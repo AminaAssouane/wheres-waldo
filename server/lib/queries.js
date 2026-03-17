@@ -1,12 +1,16 @@
 const prisma = require("./prisma");
 
 // CHARACTERS
-async function getCharacter(name) {
+async function getCharacters() {
+  return await prisma.character.findMany({ orderBy: { id: "asc" } });
+}
+
+async function getCharacterByName(name) {
   return await prisma.character.findUnique({ where: { name } });
 }
 
 async function checkCharacter(name, x, y) {
-  const character = await getCharacter(name);
+  const character = await getCharacterByName(name);
   if (!character) return false;
   return (
     x >= character.xMin &&
@@ -25,4 +29,4 @@ async function postScore(username, time) {
   return await prisma.score.create({ data: { username, time: Number(time) } });
 }
 
-module.exports = { getCharacter, checkCharacter, getScores, postScore };
+module.exports = { getCharacters, checkCharacter, getScores, postScore };
