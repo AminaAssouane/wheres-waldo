@@ -35,6 +35,7 @@ export function Dropdown({ x, y, onClose, actualX, actualY }) {
 
   async function handleGuess(name, actualX, actualY) {
     try {
+      onClose();
       const response = await fetch(
         `http://localhost:3000/characters/check?name=${name}&x=${actualX}&y=${actualY}`,
       );
@@ -53,14 +54,24 @@ export function Dropdown({ x, y, onClose, actualX, actualY }) {
       className={styles.dropdown}
       style={{ top: y, left: x }}
     >
-      {characters.map((character) => (
+      <p onClick={() => handleGuess("Courage", actualX, actualY)}>
+        <img src="/images/item1.jpg" alt="" /> <span>Courage</span>
+      </p>
+      <p onClick={() => handleGuess("Roger", actualX, actualY)}>
+        <img src="/images/item2.jpg" alt="" /> <span>Roger</span>
+      </p>
+      <p onClick={() => handleGuess("Morty Jr.", actualX, actualY)}>
+        <img src="/images/item3.jpg" alt="" /> <span>Morty Jr.</span>
+      </p>
+
+      {/* {characters.map((character) => (
         <p
           key={character.id}
           onClick={() => handleGuess(character.name, actualX, actualY)}
         >
           {character.name}
         </p>
-      ))}
+      ))} */}
     </div>
   );
 }

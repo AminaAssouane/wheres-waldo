@@ -8,9 +8,20 @@
   flex-direction: column;
   gap: 4px;
   color: black;
+  width: 150px;
+  background-color: var(--color-background);
 }
 
 .dropdown p:hover {
-  background-color: lightgray;
   cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 50px;
 }
