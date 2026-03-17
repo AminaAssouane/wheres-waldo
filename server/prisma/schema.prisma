@@ -14,7 +14,7 @@ datasource db {
 
 model Character {
   id    Int @id @default(autoincrement()) 
-  name  String
+  name  String @unique
   xMin  Int
   xMax  Int
   yMin  Int
