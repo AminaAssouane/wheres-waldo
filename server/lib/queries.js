@@ -5,7 +5,16 @@ async function getCharacter(name) {
   return await prisma.character.findUnique({ where: { name } });
 }
 
-async function checkCharacter(name, x, y) {}
+async function checkCharacter(name, x, y) {
+  const character = await getCharacter(name);
+  if (!character) return false;
+  return (
+    x >= character.xMin &&
+    x <= character.xMax &&
+    y >= character.yMin &&
+    y <= character.yMax
+  );
+}
 
 // SCORES
 async function getScores() {
