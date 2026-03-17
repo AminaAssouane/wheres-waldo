@@ -7,8 +7,14 @@ import { GameHeader } from "../../components/GameHeader/GameHeader.jsx";
 export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
+  const [justClosed, setJustClosed] = useState(false);
 
   function handleImageClick(e) {
+    if (justClosed) {
+      setJustClosed(false);
+      return;
+    }
+
     const img = e.currentTarget;
     const rect = img.getBoundingClientRect();
 
@@ -31,6 +37,7 @@ export function Game() {
 
   function closeMenu() {
     setClickPosition(null);
+    setJustClosed(true);
   }
 
   return (
