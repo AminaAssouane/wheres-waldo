@@ -1,9 +1,12 @@
 require("dotenv/config");
 const express = require("express");
+const cors = require("cors");
 const charactersRouter = require("./routes/charactersRouter");
 const scoresRouter = require("./routes/scoresRouter");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
