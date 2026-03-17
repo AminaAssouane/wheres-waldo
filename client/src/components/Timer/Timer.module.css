@@ -1,0 +1,12 @@
+.msTimer {
+  font-family:
+    "Courier New", Courier, monospace; /* Monospace keeps numbers from jumping */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff4757;
+  background: #2f35429f;
+  padding: 5px 15px;
+  border-radius: 5px;
+  min-width: 80px;
+  text-align: center;
+}

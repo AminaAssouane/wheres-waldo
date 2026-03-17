@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Game.module.css";
 import { Dropdown } from "../../components/Dropdown/Dropdown.jsx";
 import { TargetBox } from "../../components/TargetBox/TargetBox.jsx";
+import { GameHeader } from "../../components/GameHeader/GameHeader.jsx";
 
 export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
@@ -34,20 +35,26 @@ export function Game() {
 
   return (
     <section className={styles.image}>
-      <img src="/images/universe.jpeg" alt="scene" onClick={handleImageClick} />
-
-      {clickPosition && (
-        <>
-          <TargetBox x={clickPosition.x} y={clickPosition.y} />
-          <Dropdown
-            x={clickPosition.x}
-            y={clickPosition.y}
-            onClose={closeMenu}
-            actualX={coordinates.actualX}
-            actualY={coordinates.actualY}
-          />
-        </>
-      )}
+      <div className={styles.gameContainer}>
+        <GameHeader gamewon={false} />
+        <img
+          src="/images/universe.jpeg"
+          alt="scene"
+          onClick={handleImageClick}
+        />
+        {clickPosition && (
+          <>
+            <TargetBox x={clickPosition.x} y={clickPosition.y} />
+            <Dropdown
+              x={clickPosition.x}
+              y={clickPosition.y}
+              onClose={closeMenu}
+              actualX={coordinates.actualX}
+              actualY={coordinates.actualY}
+            />
+          </>
+        )}
+      </div>
     </section>
   );
 }

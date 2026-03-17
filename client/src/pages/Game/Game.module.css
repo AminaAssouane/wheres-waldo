@@ -1,3 +1,8 @@
+.gameContainer {
+  position: relative; /* This is the "anchor" for everything inside */
+  width: 100%;
+}
+
 .image {
   flex: 1;
   position: relative;
