@@ -5,6 +5,7 @@ import { TargetBox } from "../../components/TargetBox/TargetBox.jsx";
 
 export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
+  const [coordinates, setCoordinates] = useState(null);
 
   function handleImageClick(e) {
     const img = e.currentTarget;
@@ -23,6 +24,7 @@ export function Game() {
     const actualX = Math.round(x * scaleX);
     const actualY = Math.round(y * scaleY);
 
+    setCoordinates({ actualX, actualY });
     console.log("Coordinates:", actualX, actualY);
   }
 
@@ -41,6 +43,8 @@ export function Game() {
             x={clickPosition.x}
             y={clickPosition.y}
             onClose={closeMenu}
+            actualX={coordinates.actualX}
+            actualY={coordinates.actualY}
           />
         </>
       )}

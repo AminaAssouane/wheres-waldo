@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Dropdown.module.css";
 
-export function Dropdown({ x, y, onClose }) {
+export function Dropdown({ x, y, onClose, actualX, actualY }) {
   const dropdownRef = useRef(null);
   const [characters, setCharacters] = useState([]);
 
@@ -33,6 +33,20 @@ export function Dropdown({ x, y, onClose }) {
     fetchCharacters();
   }, []);
 
+  async function handleGuess(name, actualX, actualY) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/characters/check?name=${name}&x=${actualX}&y=${actualY}`,
+      );
+      if (!response.ok) throw new Error("Could not check character");
+      const data = await response.json();
+      if (data.correct) alert("You found a character");
+      else alert("Try again");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div
       ref={dropdownRef}
@@ -40,7 +54,12 @@ export function Dropdown({ x, y, onClose }) {
       style={{ top: y, left: x }}
     >
       {characters.map((character) => (
-        <p key={character.id}>{character.name}</p>
+        <p
+          key={character.id}
+          onClick={() => handleGuess(character.name, actualX, actualY)}
+        >
+          {character.name}
+        </p>
       ))}
     </div>
   );
