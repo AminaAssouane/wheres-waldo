@@ -7,12 +7,23 @@ export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
 
   function handleImageClick(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
+    const img = e.currentTarget;
+    const rect = img.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     setClickPosition({ x, y });
+    console.log(
+      `e.clientX: ${e.clientX} e.clientY: ${e.clientY} rect.left : ${rect.left} rect.top : ${rect.top}`,
+    );
+    const scaleX = img.naturalWidth / img.width;
+    const scaleY = img.naturalHeight / img.height;
+
+    const actualX = Math.round(x * scaleX);
+    const actualY = Math.round(y * scaleY);
+
+    console.log("Coordinates:", actualX, actualY);
   }
 
   function closeMenu() {
@@ -20,8 +31,8 @@ export function Game() {
   }
 
   return (
-    <section className={styles.image} onClick={handleImageClick}>
-      <img src="/images/universe.jpeg" alt="scene" />
+    <section className={styles.image}>
+      <img src="/images/universe.jpeg" alt="scene" onClick={handleImageClick} />
 
       {clickPosition && (
         <>
