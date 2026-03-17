@@ -1,4 +1,4 @@
-import "dotenv/config";
+require("dotenv/config");
 const express = require("express");
 const charactersRouter = require("./routes/charactersRouter");
 const scoresRouter = require("./routes/scoresRouter");
