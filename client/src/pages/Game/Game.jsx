@@ -4,6 +4,7 @@ import { Dropdown } from "../../components/Dropdown/Dropdown.jsx";
 import { TargetBox } from "../../components/TargetBox/TargetBox.jsx";
 import { GameHeader } from "../../components/GameHeader/GameHeader.jsx";
 import { VictoryModal } from "../../components/VictoryModal/VictoryModal.jsx";
+import { useNavigate } from "react-router-dom";
 
 export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
@@ -18,6 +19,8 @@ export function Game() {
   const [showModal, setShowModal] = useState(true);
 
   const gameWon = characters.every((char) => char.found);
+
+  const navigate = useNavigate();
 
   function handleImageClick(e) {
     if (justClosed) {
@@ -65,6 +68,7 @@ export function Game() {
       });
       if (!response.ok) throw new Error("Failed to add score.");
       setShowModal(false);
+      navigate("/leaderboard");
     } catch (error) {
       console.error(error);
     }
