@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react";
 import styles from "./Leaderboard.module.css";
 export function Leaderboard() {
+  const [scores, setScores] = useState([]);
+
+  useEffect(() => {
+    async function fetchScore() {
+      try {
+        const response = await fetch("http://localhost:3000/leaderboard");
+        if (!response.ok) throw new Error("Failed to fetch scores.");
+        const data = await response.json();
+        setScores(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchScore();
+  });
+
   return (
     <section className={styles.leaderboard}>
       <h1 className={styles.title}>Leaderboard</h1>
-      <div class={styles.tableContainer}>
+      <div className={styles.tableContainer}>
         <table>
           <thead>
             <tr>
@@ -14,24 +31,14 @@ export function Leaderboard() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Amina</td>
-              <td>2.029s</td>
-              <td>Jul 7, 2024</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Youcef</td>
-              <td>2.711s</td>
-              <td>Dec 2, 2024</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Yasmine</td>
-              <td>3.211s</td>
-              <td>Dec 9, 2024</td>
-            </tr>
+            {scores.map((score) => (
+              <tr key={score.id}>
+                <td>{score.id}</td>
+                <td>{score.username}</td>
+                <td>{score.time}</td>
+                <td>{score.createdAt}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
