@@ -3,6 +3,7 @@ import styles from "./Game.module.css";
 import { Dropdown } from "../../components/Dropdown/Dropdown.jsx";
 import { TargetBox } from "../../components/TargetBox/TargetBox.jsx";
 import { GameHeader } from "../../components/GameHeader/GameHeader.jsx";
+import { VictoryModal } from "../../components/VictoryModal/VictoryModal.jsx";
 
 export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
@@ -50,6 +51,11 @@ export function Game() {
     if (gameWon) console.log("Game Won!");
   }, [gameWon]);
 
+  const handleScoreSubmit = (username) => {
+    console.log("Saving score for:", username);
+    // Add your fetch logic here to save to database
+  };
+
   return (
     <section className={styles.image}>
       <div className={styles.gameContainer}>
@@ -73,6 +79,7 @@ export function Game() {
             />
           </>
         )}
+        {gameWon && <VictoryModal onSubmit={handleScoreSubmit} />}
       </div>
     </section>
   );
