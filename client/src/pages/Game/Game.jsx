@@ -47,13 +47,13 @@ export function Game() {
   }
 
   useEffect(() => {
-    if (gameWon) alert("Game Won!");
+    if (gameWon) console.log("Game Won!");
   }, [gameWon]);
 
   return (
     <section className={styles.image}>
       <div className={styles.gameContainer}>
-        <GameHeader gamewon={gameWon} />
+        <GameHeader gameWon={gameWon} />
         <img
           src="/images/universe.jpeg"
           alt="scene"

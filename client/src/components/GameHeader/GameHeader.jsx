@@ -1,7 +1,7 @@
 import styles from "./GameHeader.module.css";
 import { Timer } from "../Timer/Timer";
 
-export function GameHeader({ gamewon }) {
+export function GameHeader({ gameWon }) {
   return (
     <div className={styles.gameHeader}>
       <section className={styles.characters}>
@@ -10,7 +10,7 @@ export function GameHeader({ gamewon }) {
         <img src="/images/item3.jpg" alt="" />
       </section>
       <section className={styles.timer}>
-        <Timer gamewon={gamewon} />
+        <Timer gameWon={gameWon} />
       </section>
     </div>
   );

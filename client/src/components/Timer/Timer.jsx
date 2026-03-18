@@ -13,6 +13,7 @@ export function Timer({ gameWon }) {
         setTime((prev) => prev + 10);
       }, 10);
     } else {
+      alert("timer");
       clearInterval(interval);
     }
 
