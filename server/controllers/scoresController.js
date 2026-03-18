@@ -1,9 +1,23 @@
 const db = require("../lib/queries");
 
+function msToTime(ms) {
+  const pad = (n) => n.toString().padStart(2, "0");
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+  const centiseconds = Math.round((ms % 1000) / 10); // Round to 2 digits
+
+  return `${pad(minutes)}:${pad(seconds)}:${pad(centiseconds)}`;
+}
+
 async function getScores(req, res) {
   try {
     const scores = await db.getScores();
-    res.json(scores);
+    const formattedScores = scores.map((score) => ({
+      ...score,
+      formattedTime: msToTime(score.time),
+    }));
+
+    res.json(formattedScores);
   } catch (error) {
     console.error("Failed to fetch scores. ", error);
     res.status(500).json({ error: "Failed to fetch scores." });
