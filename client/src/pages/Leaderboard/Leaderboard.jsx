@@ -9,7 +9,6 @@ export function Leaderboard() {
         const response = await fetch("http://localhost:3000/leaderboard");
         if (!response.ok) throw new Error("Failed to fetch scores.");
         const data = await response.json();
-        console.log("the scores : ", data);
         setScores(data);
       } catch (error) {
         console.log(error);

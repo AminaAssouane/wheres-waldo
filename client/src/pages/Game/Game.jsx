@@ -15,6 +15,8 @@ export function Game() {
     { name: "Morty Jr.", found: false },
   ]);
   const [time, setTime] = useState(0);
+  const [showModal, setShowModal] = useState(true);
+
   const gameWon = characters.every((char) => char.found);
 
   function handleImageClick(e) {
@@ -62,6 +64,7 @@ export function Game() {
         body: JSON.stringify({ username: username, time: time }),
       });
       if (!response.ok) throw new Error("Failed to add score.");
+      setShowModal(false);
     } catch (error) {
       console.error(error);
     }
@@ -90,7 +93,7 @@ export function Game() {
             />
           </>
         )}
-        {gameWon && <VictoryModal onSubmit={handleScoreSubmit} />}
+        {gameWon && showModal && <VictoryModal onSubmit={handleScoreSubmit} />}
       </div>
     </section>
   );
