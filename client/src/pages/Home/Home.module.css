@@ -8,4 +8,5 @@
 .title {
   font-size: 3rem;
   margin-bottom: 20px;
+  color: var(--color-title);
 }

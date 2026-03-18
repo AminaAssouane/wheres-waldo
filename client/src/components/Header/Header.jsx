@@ -7,7 +7,7 @@ export function Header() {
     <header className={styles.header}>
       <h1 className={styles.title}>
         <img src={waldo} alt="" />
-        Where's waldo
+        Where's <span className={styles.waldo}>waldo</span>
       </h1>
       <nav className={styles.navBar}>
         <Link to="/">Home</Link>

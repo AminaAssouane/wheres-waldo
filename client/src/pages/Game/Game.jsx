@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Game.module.css";
 import { Dropdown } from "../../components/Dropdown/Dropdown.jsx";
 import { TargetBox } from "../../components/TargetBox/TargetBox.jsx";
@@ -8,6 +8,12 @@ export function Game() {
   const [clickPosition, setClickPosition] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
   const [justClosed, setJustClosed] = useState(false);
+  const [characters, setCharacters] = useState([
+    { name: "Courage", found: false },
+    { name: "Roger", found: false },
+    { name: "Morty Jr.", found: false },
+  ]);
+  const gameWon = characters.every((char) => char.found);
 
   function handleImageClick(e) {
     if (justClosed) {
@@ -40,10 +46,14 @@ export function Game() {
     setJustClosed(true);
   }
 
+  useEffect(() => {
+    if (gameWon) alert("Game Won!");
+  }, [gameWon]);
+
   return (
     <section className={styles.image}>
       <div className={styles.gameContainer}>
-        <GameHeader gamewon={false} />
+        <GameHeader gamewon={gameWon} />
         <img
           src="/images/universe.jpeg"
           alt="scene"
@@ -58,6 +68,8 @@ export function Game() {
               onClose={closeMenu}
               actualX={coordinates.actualX}
               actualY={coordinates.actualY}
+              characters={characters}
+              setCharacters={setCharacters}
             />
           </>
         )}

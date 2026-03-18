@@ -8,6 +8,7 @@
 .title {
   font-size: 3rem;
   margin-bottom: 20px;
+  color: var(--color-title);
 }
 
 /* Container to handle the rounded corners and background */

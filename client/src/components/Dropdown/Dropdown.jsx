@@ -1,9 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./Dropdown.module.css";
 
-export function Dropdown({ x, y, onClose, actualX, actualY }) {
+export function Dropdown({
+  x,
+  y,
+  onClose,
+  actualX,
+  actualY,
+  characters,
+  setCharacters,
+}) {
   const dropdownRef = useRef(null);
-  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -19,20 +26,6 @@ export function Dropdown({ x, y, onClose, actualX, actualY }) {
     };
   }, [onClose]);
 
-  useEffect(() => {
-    async function fetchCharacters() {
-      try {
-        const response = await fetch("http://localhost:3000/characters");
-        if (!response.ok) throw new Error("Could not fetch ");
-        const data = await response.json();
-        setCharacters(data);
-      } catch (error) {
-        console.error("Could not fetch characters. ", error);
-      }
-    }
-    fetchCharacters();
-  }, []);
-
   async function handleGuess(name, actualX, actualY) {
     try {
       onClose();
@@ -41,8 +34,14 @@ export function Dropdown({ x, y, onClose, actualX, actualY }) {
       );
       if (!response.ok) throw new Error("Could not check character");
       const data = await response.json();
-      if (data.correct) alert("You found a character");
-      else alert("Try again");
+      if (data.correct) {
+        setCharacters(
+          characters.map((character) =>
+            character.name === name ? { ...character, found: true } : character,
+          ),
+        );
+        console.log(characters);
+      } else alert("Try again");
     } catch (error) {
       console.error(error);
     }
@@ -63,15 +62,6 @@ export function Dropdown({ x, y, onClose, actualX, actualY }) {
       <p onClick={() => handleGuess("Morty Jr.", actualX, actualY)}>
         <img src="/images/item3.jpg" alt="" /> <span>Morty Jr.</span>
       </p>
-
-      {/* {characters.map((character) => (
-        <p
-          key={character.id}
-          onClick={() => handleGuess(character.name, actualX, actualY)}
-        >
-          {character.name}
-        </p>
-      ))} */}
     </div>
   );
 }
