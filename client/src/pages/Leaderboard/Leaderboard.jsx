@@ -6,7 +6,9 @@ export function Leaderboard() {
   useEffect(() => {
     async function fetchScore() {
       try {
-        const response = await fetch("http://localhost:3000/leaderboard");
+        const response = await fetch(
+          "https://wheres-waldo-nnu1.onrender.com/leaderboard",
+        );
         if (!response.ok) throw new Error("Failed to fetch scores.");
         const data = await response.json();
         setScores(data);

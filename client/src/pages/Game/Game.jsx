@@ -59,13 +59,16 @@ export function Game() {
 
   async function handleScoreSubmit(username) {
     try {
-      const response = await fetch("http://localhost:3000/leaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://wheres-waldo-nnu1.onrender.com/leaderboard",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username, time: time }),
         },
-        body: JSON.stringify({ username: username, time: time }),
-      });
+      );
       if (!response.ok) throw new Error("Failed to add score.");
       setShowModal(false);
       navigate("/leaderboard");

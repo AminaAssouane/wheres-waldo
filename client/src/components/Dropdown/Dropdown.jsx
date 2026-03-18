@@ -30,7 +30,7 @@ export function Dropdown({
     try {
       onClose();
       const response = await fetch(
-        `http://localhost:3000/characters/check?name=${name}&x=${actualX}&y=${actualY}`,
+        `https://wheres-waldo-nnu1.onrender.com/characters/check?name=${name}&x=${actualX}&y=${actualY}`,
       );
       if (!response.ok) throw new Error("Could not check character");
       const data = await response.json();
