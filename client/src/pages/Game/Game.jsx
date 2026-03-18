@@ -14,6 +14,7 @@ export function Game() {
     { name: "Roger", found: false },
     { name: "Morty Jr.", found: false },
   ]);
+  const [time, setTime] = useState(0);
   const gameWon = characters.every((char) => char.found);
 
   function handleImageClick(e) {
@@ -51,15 +52,25 @@ export function Game() {
     if (gameWon) console.log("Game Won!");
   }, [gameWon]);
 
-  const handleScoreSubmit = (username) => {
-    console.log("Saving score for:", username);
-    // Add your fetch logic here to save to database
-  };
+  async function handleScoreSubmit(username) {
+    try {
+      const response = await fetch("http://localhost:3000/leaderboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: username, time: time }),
+      });
+      if (!response.ok) throw new Error("Failed to add score.");
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <section className={styles.image}>
       <div className={styles.gameContainer}>
-        <GameHeader gameWon={gameWon} />
+        <GameHeader gameWon={gameWon} time={time} setTime={setTime} />
         <img
           src="/images/universe.jpeg"
           alt="scene"

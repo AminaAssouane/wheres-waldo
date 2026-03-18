@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Timer.module.css";
 
-export function Timer({ gameWon }) {
-  const [time, setTime] = useState(0);
-
+export function Timer({ gameWon, time, setTime }) {
   useEffect(() => {
     let interval = null;
 
@@ -17,7 +15,7 @@ export function Timer({ gameWon }) {
     }
 
     return () => clearInterval(interval);
-  }, [gameWon]);
+  }, [gameWon, setTime]);
 
   function formatTime(ms) {
     const minutes = Math.floor(ms / 60000);
